@@ -7,3 +7,5 @@
 
 npm install react redux react-router@3.x.x react-dom react-redux react-router-redux --save
 
+DevTools setup
+npm install --save redux-devtools redux-devtools-dock-monitor redux-devtools-log-monitor
