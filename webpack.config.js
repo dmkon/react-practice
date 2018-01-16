@@ -15,11 +15,11 @@ module.exports = {
         path: __dirname + '/public',
         filename: 'bundle.js'
     },
-    watch: NODE_ENV == 'development',
+    watch: NODE_ENV === 'development',
     watchOptions: {
         aggregateTimeout: 100
     },
-    devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
+    devtool: NODE_ENV === 'development' ? 'cheap-inline-module-source-map' : null,
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('bundle.css'),
@@ -81,19 +81,23 @@ module.exports = {
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'url?limit=10000&mimetype=image/svg+xml&name=fonts/[name].[ext]'
+            },
+            {
+                test: /\.less/,
+                loader: 'style!css!less'
             }
         ]
     }
 };
 
 
-if (NODE_ENV == 'production') {
+if (NODE_ENV === 'production') {
     console.log('WTF');
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings:       false,
-                drop_console:   true,
+                dropConsole:    true,
                 unsafe:         true
             }
         })
